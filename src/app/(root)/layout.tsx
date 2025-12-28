@@ -9,8 +9,6 @@ const Layout = async ({ children }: { children: React.ReactNode }) => {
     headers: await headers(),
   });
 
-  console.log("Layout Session:", session);
-
   if (!session?.user) redirect("/sign-in");
 
   const user = {
