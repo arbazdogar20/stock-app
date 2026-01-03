@@ -1,5 +1,10 @@
 "use client";
-import React, { useMemo, useState } from "react";
+import {
+  saveAndRemoveWatchList,
+  findWatchListBySymbol,
+} from "@/lib/actions/watchlist.actions";
+import { Loader } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
 
 // Minimal WatchlistButton implementation to satisfy page requirements.
 // This component focuses on UI contract only. It toggles local state and
@@ -12,19 +17,40 @@ const WatchlistButton = ({
   showTrashIcon = false,
   type = "button",
   onWatchlistChange,
+  userId,
 }: WatchlistButtonProps) => {
   const [added, setAdded] = useState<boolean>(!!isInWatchlist);
+  const [isAdding, setIsAdding] = useState<boolean>(false);
 
   const label = useMemo(() => {
-    if (type === "icon") return added ? "" : "";
+    // if (type === "icon") return added ? "" : "";
     return added ? "Remove from Watchlist" : "Add to Watchlist";
   }, [added, type]);
 
-  const handleClick = () => {
-    const next = !added;
-    setAdded(next);
-    onWatchlistChange?.(symbol, next);
+  const handleClick = async () => {
+    setIsAdding(true);
+    const response = await saveAndRemoveWatchList({
+      userId: String(userId),
+      symbol,
+      company: symbol.toUpperCase(),
+    });
+    if (response.success) {
+      setAdded(!added);
+    }
+    setIsAdding(false);
   };
+
+  const handleToFindWatchlist = async () => {
+    const res = await findWatchListBySymbol({
+      symbol,
+      userId: String(userId),
+    });
+    if (res.success && res.data) setAdded(true);
+  };
+
+  useEffect(() => {
+    handleToFindWatchlist();
+  }, []);
 
   if (type === "icon") {
     return (
@@ -81,7 +107,9 @@ const WatchlistButton = ({
           />
         </svg>
       ) : null}
-      <span>{label}</span>
+      <span className="flex items-center justify-center">
+        {isAdding ? <Loader className="animate-spin mr-2" size={18} /> : label}
+      </span>
     </button>
   );
 };
