@@ -56,9 +56,6 @@ src/
 - [TradingView Widget](https://www.tradingview.com/widget/)
 - [Tailwind CSS](https://tailwindcss.com/)
 
-## License
-
-MIT
   
 ## Additional Tools
 
