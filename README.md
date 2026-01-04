@@ -39,10 +39,12 @@ src/
      ```
 
 4. **Open [http://localhost:3000](http://localhost:3000) in your browser.**
+5. **Open [http://localhost:8288](http://localhost:8288) in your browser.**
 
 ## Scripts
 
 - `npm run dev` — Start development server
+- `npx inngest-cli@latest dev` - Start inngest server
 - `npm run build` — Build for production
 - `npm start` — Start production server
 
@@ -62,4 +64,3 @@ MIT
 
 - [Auth.js](https://authjs.dev/) — Secure authentication solution
 - [Inngest](https://www.inngest.com/) — Background jobs and event-driven workflows
-- `npm run inngest` — Start the Inngest development server
