@@ -17,7 +17,7 @@ const Layout = async ({ children }: { children: React.ReactNode }) => {
       <section className="auth-left-section scrollbar-hide-default">
         <Link href="/" className="auth-logo">
           <Image
-            src="/assets/icons/logo.svg"
+            src="/assets/icons/logo.png"
             alt="Logo"
             width={140}
             height={32}
@@ -30,7 +30,7 @@ const Layout = async ({ children }: { children: React.ReactNode }) => {
       <section className="auth-right-section">
         <div className="z-10 relative lg:mt-4 lg:mb-16">
           <blockquote className="auth-blockquote">
-            Signalist turned my watchlist into a winning list. The alerts are
+            Stock App turned my watchlist into a winning list. The alerts are
             spot-on, and I feel more confident making moves in the market
           </blockquote>
           <div className="flex items-center justify-between">
@@ -54,7 +54,7 @@ const Layout = async ({ children }: { children: React.ReactNode }) => {
         </div>
         <div className="flex-1 relative">
           <Image
-            src="/assets/images/dashboard.png"
+            src="/assets/images/dashboard-pr.png"
             alt="Dashboard Preview"
             width={1440}
             height={1150}
